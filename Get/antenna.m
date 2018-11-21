@@ -18,8 +18,8 @@ x=-180:1:180;
 y=0:1:180;
 az=deg2rad(x);
 el=deg2rad(y);
-Nh=8;
-Nv=8;
+Nh=2;
+Nv=2;
 wavelength=3e8/4e9;
 Dh=0.5/1;
 Dv=0.8/1;
@@ -51,12 +51,12 @@ for i=1:length(az)
             arraygain
             gain
         end
-        if el(j)+deg2rad(10)==el_targt+pi/2&&az(i)==az_target
+        if el(j)==el_targt+pi/2&&az(i)+deg2rad(10)==az_target
             a=1
             arraygain
             gain
         end
-        if el(j)-deg2rad(10)==el_targt+pi/2&&az(i)==az_target
+        if el(j)==el_targt+pi/2&&az(i)-deg2rad(10)==az_target
             a=2
             arraygain
             gain
