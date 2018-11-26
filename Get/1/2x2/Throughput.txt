@@ -1,0 +1,27 @@
+5
+DL average per cell: 341.9229 DL edge per cell: 20.6578
+UL average per cell: 178.342 UL edge per cell: 0
+10
+DL average per cell: 417.1952 DL edge per cell: 48.697
+UL average per cell: 204.835 UL edge per cell: 0
+15
+DL average per cell: 474.2036 DL edge per cell: 62.4647
+UL average per cell: 222.9398 UL edge per cell: 0
+20
+DL average per cell: 511.514 DL edge per cell: 72.4222
+UL average per cell: 233.4684 UL edge per cell: 0
+25
+DL average per cell: 532.8059 DL edge per cell: 74.3145
+UL average per cell: 238.7815 UL edge per cell: 0
+30
+DL average per cell: 543.1085 DL edge per cell: 74.4498
+UL average per cell: 241.1695 UL edge per cell: 0
+35
+DL average per cell: 547.3857 DL edge per cell: 74.4938
+UL average per cell: 242.1052 UL edge per cell: 0
+40
+DL average per cell: 548.9915 DL edge per cell: 74.5078
+UL average per cell: 242.437 UL edge per cell: 0
+no interference
+DL average per cell: 549.8225 DL edge per cell: 74.5142
+UL average per cell: 242.599 UL edge per cell: 0

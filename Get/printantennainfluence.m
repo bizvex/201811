@@ -13,56 +13,46 @@ ylabel(ax,'CDF');
 hold all;
 grid on;
 
-SINR_cdf=load('1/0x0/SINR_cdf0');
+SINR_cdf=load('1/0x0/R_sinr.txt');
 displayname='without BF';
 current_marker=markers{5};
 current_marker_color=marker_color{5};
 [ range,output ] = getCDF( SINR_cdf );
-plotsmooth(ax,range,output,displayname,current_marker,linewidth,current_marker_color);
+plotcdfsmooth(ax,range,output,displayname,linewidth,current_marker_color);
 
-SINR_cdf=load('1/2x2/SINR_cdf0');
+SINR_cdf=load('1/2x2/R_sinr.txt');
 displayname='2x2';
 current_marker=markers{1};
 current_marker_color=marker_color{1};
 [ range,output ] = getCDF( SINR_cdf );
-plotsmooth(ax,range,output,displayname,current_marker,linewidth,current_marker_color);
+plotcdfsmooth(ax,range,output,displayname,linewidth,current_marker_color);
 
-SINR_cdf=load('1/4x4/SINR_cdf0');
+SINR_cdf=load('1/4x4/R_sinr.txt');
 displayname='4x4';
 current_marker=markers{2};
 current_marker_color=marker_color{2};
 [ range,output ] = getCDF( SINR_cdf );
-plotsmooth(ax,range,output,displayname,current_marker,linewidth,current_marker_color);
+plotcdfsmooth(ax,range,output,displayname,linewidth,current_marker_color);
 
-SINR_cdf=load('1/8x8/SINR_cdf0');
+SINR_cdf=load('1/8x8/R_sinr.txt');
 displayname='8x8';
 current_marker=markers{3};
 current_marker_color=marker_color{3};
 [ range,output ] = getCDF( SINR_cdf );
-plotsmooth(ax,range,output,displayname,current_marker,linewidth,current_marker_color);
+plotcdfsmooth(ax,range,output,displayname,linewidth,current_marker_color);
 
-SINR_cdf=load('1/16x8/SINR_cdf0');
+SINR_cdf=load('1/16x8/R_sinr.txt');
 displayname='16x8';
 current_marker=markers{4};
 current_marker_color=marker_color{4};
 [ range,output ] = getCDF( SINR_cdf );
-plotsmooth(ax,range,output,displayname,current_marker,linewidth,current_marker_color);
+plotcdfsmooth(ax,range,output,displayname,linewidth,current_marker_color);
 
 legend(ax,'show','Location','Best');
 
 figure;
-tp=[];
-tp5=[];
-tp=[tp,load('1/0x0/tp')];
-tp5=[tp5,load('1/0x0/tp5')];
-tp=[tp,load('1/2x2/tp')];
-tp5=[tp5,load('1/2x2/tp5')];
-tp=[tp,load('1/4x4/tp')];
-tp5=[tp5,load('1/4x4/tp5')];
-tp=[tp,load('1/8x8/tp')];
-tp5=[tp5,load('1/8x8/tp5')];
-tp=[tp,load('1/16x8/tp')];
-tp5=[tp5,load('1/16x8/tp5')];
+tp=[298.5503,549.8225,735.2509,940.4163,1028.4793];
+tp5=[6.3181,74.5142,152.3443,275.1282,402.8539];
 tpall=zeros(4,2);
 for i=1:5
     tpall(i,1)=tp(i);
