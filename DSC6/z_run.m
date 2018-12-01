@@ -8,6 +8,7 @@ n_UAV = 6;
 n_UE_per_MBS = 60;% Configuration #4b 
 type = {'FFRA'};% FFRA,FFRB,FFRC,FFRD,FFRE
 config.random = 0;% 0:代表聚类 1:代表随机放置UAV
+config.ACIR=20;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 config.n_hotspot_per_MBS = 2;

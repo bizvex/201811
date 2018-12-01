@@ -12,7 +12,7 @@ for d_ = 1:length(UAV)
         UE(u_).F1 = F1;
         switch config.type
             case 'FFRA'
-                UE(u_).get_UAV_SINR_FFRA(config,UE(u_).this2UAV,UAV(d_));
+                UE(u_).get_UAV_SINR_FFRA(config,UE(u_).this2UAV,UAV(d_),[UAV(1:d_-1),UAV(d_+1:end)]);
         end
     end
     

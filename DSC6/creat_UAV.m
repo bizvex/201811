@@ -12,7 +12,7 @@ for d_ = 1:size(UAVcandidate_pos,1)
     
     switch config.type
         case 'FFRA'
-            UAV(d_).N_max = config.bandwidth*config.a/config.n_UAV;
+            UAV(d_).N_max = config.bandwidth*config.a;
         case 'FFRB'
             UAV(d_).N_max = config.bandwidth/config.n_UAV;
         case 'FFRC'
