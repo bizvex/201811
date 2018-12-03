@@ -6,7 +6,7 @@ for u_ = 1:length(UE)
     m_MBSpower = zeros(1,length(MBS));
     for b_ = 1:length(MBS)
         d_2d = sqrt((MBS(b_).pos(1)-UE(u_).pos(1))^2+(MBS(b_).pos(2)-UE(u_).pos(2))^2);
-        PL = get_MBS_PL(config,d_2d);
+        PL = get_MBS_PL(config,d_2d,1.5);
         PL_linear = 10^(0.1*PL);
         m_MBSpower(b_) = Tx_MBS/PL_linear;
     end

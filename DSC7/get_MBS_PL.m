@@ -1,13 +1,16 @@
-function [ PL ] = get_MBS_PL( config,d_2d )
-
+function [ PL ] = get_MBS_PL( config,d_2d,UE_h )
+frequency = config.frequency;
 h_BS = 15;
-h_UE = 1.5;
+h_UE = UE_h;
 d_3d = sqrt(d_2d^2 + (h_BS - h_UE)^2);
 
-PL_LOS = 30.8+24.2*log10(d_3d);
-PL_NLOS = 2.7+42.8*log10(d_3d);
+extra_LOS = 1;
+extra_NLOS = 20;
 
-P_LOS = min(18/d_3d,1)*(1-exp(-d_3d/63))+exp(-d_3d/63);
+PL_LOS = 20*log10(4*pi*frequency*d_3d/3e8)+extra_LOS;
+PL_NLOS = 20*log10(4*pi*frequency*d_3d/3e8)+extra_NLOS;
+
+P_LOS = 0.5;
 
 PL = P_LOS*PL_LOS + (1-P_LOS)*PL_NLOS;
 

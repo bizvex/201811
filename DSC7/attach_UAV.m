@@ -5,7 +5,7 @@ for u_=1:length(UE)
     m_UAVpower=zeros(1,length(UAV));
     for d_=1:length(UAV)
         d_2_UAV = sqrt((UE(u_).pos(1)-UAV(d_).pos(1))^2+(UE(u_).pos(2)-UAV(d_).pos(2))^2);
-        PL = get_UAV_PL( config,d_2_UAV,UAV(d_).h );
+        PL = get_UAV_PL( config,d_2_UAV,UAV(d_).h,1.5 );
         PL_linear = 10^(0.1*PL);
         Tx_UAV = config.Tx_UAV;
         m_UAVpower(d_) = Tx_UAV/PL_linear;
@@ -30,17 +30,23 @@ for d_ = 1:length(UAV)
         this_UE = UE(UE_in_UAV(index(end-u_)));
         if u_+1<length(index)
             u_ = u_ + 1;
-            UAV_resource = UAV_resource + this_UE.D/log2(1+10^(0.1*this_UE.UAV_SINR));
-            if UAV_resource <= UAV(d_).resource
+            if UAV_resource + this_UE.D/log2(1+10^(0.1*this_UE.UAV_SINR)) <= UAV(d_).resource
+                if this_UE.UAV_SINR<this_UE.MBS_SINR_before
+                    continue;
+                end
+                if config.random==1||config.random==2
+                    if this_UE.this2UAV>this_UE.this2MBS
+                        continue;
+                    end
+                end
+                
                 % 接入UAV
+                UAV_resource = UAV_resource + this_UE.D/log2(1+10^(0.1*this_UE.UAV_SINR));
                 this_UE.attach_UAV = UAV(d_);
                 this_UE.attach_UAV.attachUE(this_UE);
                 this_UE.belong2UAV=true;
                 % 从MBS卸下
                 this_UE.attach_MBS.deattachUE(this_UE);
-                continue;
-            else
-                UAV_resource = UAV_resource - this_UE.D/(config.bandwidth*log2(1+10^(0.1*this_UE.UAV_SINR)));
                 continue;
             end
         else

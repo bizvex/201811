@@ -1,9 +1,9 @@
-function [ UAVcandidate_pos,UAVcandidateUE, UE2UAVcandidate ] = get_UAVcandidate_pos_random( config,UE_pos,UE2MBS )
-
+function [ UAVcandidate_pos,UAVcandidateUE, UE2UAVcandidate ] = get_UAVcandidate_pos_random( config,UE_pos,UE )
+UE2MBS=[UE.this2MBS];
 ISD = config.ISD;
 MBS_r = ISD/2/sqrt(3)*2;
 map_r = MBS_r+ISD;
-UAVcandidate_pos = spatial_in_circle(map_r,config.n_UAVcandidate,[0,0]);
+UAVcandidate_pos = spatial_in_circle(map_r,config.n_UAV,[0,0]);
 
 biClusterAssume = zeros(size(UE_pos,1),3);
 for u_ = 1:size(UE_pos,1)

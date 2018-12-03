@@ -31,8 +31,10 @@ fprintf('outage probability: %f\n',outage_before);
 
 % ÆµÆ×Ð§ÂÊbefore
 SE_all_before = log2(1+10.^(0.1.*UE_MBS_SINR_before));
+SE_all_before=sort(SE_all_before);
 SE_before = sum(SE_all_before(:))/length(UE_MBS_SINR_before);
-fprintf('SE before: %f\n',SE_before);% bps
+fprintf('SE before: %f\n',SE_before);
+fprintf('5p SE before: %f\n',SE_all_before(ceil(length(SE_all_before)*0.05)));
 
 end
 

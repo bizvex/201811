@@ -1,4 +1,4 @@
-function [MBS_resource_after,no_serving_after,outage_after,SE_after,SE_all_after] = caculate_after( UE_MBS_SINR_after,MBS,UAV,UE )
+function [MBS_resource_after,no_serving_after,outage_after,SE_after,SE_all_after,SE_MBS_after,SE_MBS_all_after] = caculate_after( UE_MBS_SINR_after,MBS,UAV,UE )
 
 %% ืสิด
 % after
@@ -35,6 +35,9 @@ SINR_MBS = UE_MBS_SINR_after((UEbelong2UAV == 0));
 SINR_UAV = zeros(1,sum(UEbelong2UAV(:)));
 ii = 1;
 for d_ = 1:length(UAV)
+    if isempty(UAV(d_).attach_UE_vector)
+        continue;
+    end
     attach_UE_SINR = [UAV(d_).attach_UE_vector.UAV_SINR];
     SINR_UAV(ii:ii+length(attach_UE_SINR)-1) = attach_UE_SINR;
     ii = ii+length(attach_UE_SINR);
@@ -42,9 +45,15 @@ end
 SE_MBS = log2(1+10.^(0.1.*SINR_MBS));
 SE_UAV = log2(1+10.^(0.1.*SINR_UAV));
 SE_all_after = [SE_MBS SE_UAV];
+SE_all_after=sort(SE_all_after);
+SE_MBS_all_after=sort(SE_MBS);
 
 SE_after = sum(SE_all_after(:))/length(UE);
-fprintf('SE after: %f\n',SE_after);% bps
+SE_MBS_after = sum(SE_MBS_all_after(:))/length(SE_MBS_all_after);
+fprintf('SE after: %f\n',SE_after);
+fprintf('SE MBS after: %f\n',SE_MBS_after);
+fprintf('5p SE after: %f\n',SE_all_after(ceil(length(SE_all_after)*0.05)));
+fprintf('5p SE MBS after: %f\n',SE_MBS_all_after(ceil(length(SE_MBS_all_after)*0.05)));
 
 end
 
