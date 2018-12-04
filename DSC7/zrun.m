@@ -4,10 +4,10 @@ clear;
 num=200;
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-n_UAV = 4:12;
+n_UAV = 6;
 n_UE_per_MBS = 60;
 ACIR=20;
-config.random = 2;% 0:代表聚类 1:代表传统聚类 2:代表随机
+config.random = 0;% 0:代表聚类 1:代表传统聚类 2:代表随机
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 config.num=num;
 config.n_hotspot_per_MBS = 2;
@@ -69,6 +69,7 @@ for lp=1:length(loopparm)
     SE_all_after_set = cell(1,num);
     SE_MBS_after_set=cell(1,num);
     SE_MBS_all_after_set=cell(1,num);
+    m_PLOS_set=cell(1,num);
     for i = 1:num
         RandStream.setGlobalStream(RandStream('mt19937ar','Seed',i));% UAV6 UE60 用第20个snapshot好像还可以
         fprintf('snapshot %d\n\n',i);
@@ -115,7 +116,7 @@ for lp=1:length(loopparm)
             [ UAV ] = creat_UAV( config,UAVcandidate_pos );
             
             %% 选择UAV服务的用户，UE接收到来自UAV的SINR也在这里计算
-            attach_UAV( config,UAV,UE,UAVcandidateUE,UE2UAVcandidate);
+            [ m_PLOS ]=attach_UAV( config,UAV,UE,UAVcandidateUE,UE2UAVcandidate);
 %             for d_ = 1:length(UAV)
 %                 if isempty(UAV(d_).attach_UE_vector)
 %                     loop2 = true;
@@ -142,6 +143,7 @@ for lp=1:length(loopparm)
         SE_all_after_set{i} = SE_all_after;
         SE_MBS_after_set{i}=SE_MBS_after;
         SE_MBS_all_after_set{i}=SE_MBS_all_after;
+        m_PLOS_set{i}=m_PLOS;
     end
     
     % 网络拓扑
@@ -152,5 +154,5 @@ for lp=1:length(loopparm)
     % 存入result
     [ results_filename ] = gen_file_name( config,num );save(fullfile(config.path,results_filename),'MBS_resource_before_set','no_serving_before_set',...
         'outage_before_set','SE_before_set','SE_all_before_set','MBS_resource_after_set','no_serving_after_set','outage_after_set',...
-        'SE_after_set','SE_all_after_set','SE_MBS_after_set','SE_MBS_all_after_set');
+        'SE_after_set','SE_all_after_set','SE_MBS_after_set','SE_MBS_all_after_set','m_PLOS_set');
 end

@@ -1,4 +1,4 @@
-function [ PL ] = get_UAV_PL( config,d_2d,h,UE_h )
+function [ PL,P_LOS ] = get_UAV_PL( config,d_2d,h,UE_h )
 
 h_UAV = h;
 h_UE = UE_h;

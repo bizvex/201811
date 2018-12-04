@@ -1,15 +1,18 @@
-function attach_UAV( config,UAV,UE,UAVcandidateUE,UE2UAVcandidate )
+function m_PLOS=attach_UAV( config,UAV,UE,UAVcandidateUE,UE2UAVcandidate )
 fprintf('UE attach UAV...\n');
-
+m_PLOS=[];
 for u_=1:length(UE)
     m_UAVpower=zeros(1,length(UAV));
+    PLOS=zeros(1,length(UAV));
     for d_=1:length(UAV)
         d_2_UAV = sqrt((UE(u_).pos(1)-UAV(d_).pos(1))^2+(UE(u_).pos(2)-UAV(d_).pos(2))^2);
-        PL = get_UAV_PL( config,d_2_UAV,UAV(d_).h,1.5 );
+        [PL,P_LOS] = get_UAV_PL( config,d_2_UAV,UAV(d_).h,1.5 );
+        PLOS(d_)=P_LOS;
         PL_linear = 10^(0.1*PL);
         Tx_UAV = config.Tx_UAV;
         m_UAVpower(d_) = Tx_UAV/PL_linear;
     end
+    UE(u_).m_PLOS=PLOS;
     UE(u_).m_UAVpower=m_UAVpower;
 end
 
@@ -45,6 +48,7 @@ for d_ = 1:length(UAV)
                 this_UE.attach_UAV = UAV(d_);
                 this_UE.attach_UAV.attachUE(this_UE);
                 this_UE.belong2UAV=true;
+                m_PLOS=[m_PLOS,this_UE.m_PLOS(d_)];
                 % ´ÓMBSÐ¶ÏÂ
                 this_UE.attach_MBS.deattachUE(this_UE);
                 continue;

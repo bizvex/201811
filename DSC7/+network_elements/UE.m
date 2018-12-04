@@ -14,6 +14,7 @@ classdef UE < handle
         UAV_SINR
         MBS_SINR_before
         MBS_SINR_after
+        m_PLOS
     end
     
     methods
