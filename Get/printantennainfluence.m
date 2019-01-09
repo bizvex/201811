@@ -62,4 +62,5 @@ bar(tpall,'hist');
 xlabel('天线配置')
 ylabel('吞吐量 [Mbps]')
 legend('系统平均吞吐量','边缘用户吞吐量');
+grid on;
 set(gca,'xticklabel',{'without BF','2x2','4x4','8x8','16x8'});
