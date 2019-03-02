@@ -18,8 +18,10 @@ x=-180:1:180;
 y=0:1:180;
 az=deg2rad(x);
 el=deg2rad(y);
-Nh=2;
-Nv=2;
+Nh=8;%水平，论文中的N
+Nv=16;%垂直，论文中的M
+maxarraygain=21.07;
+bias=1:10;
 wavelength=3e8/4e9;
 Dh=0.5/1;
 Dv=0.8/1;
@@ -30,6 +32,7 @@ theta3dB=deg2rad(65);
 res=zeros(length(x),length(y));
 az_target=deg2rad(0);
 el_targt=deg2rad(0);
+for bia=bias
 for i=1:length(az)
     for j=1:length(el)
         a=(az(i)-az_target)/phi3dB;
@@ -46,24 +49,14 @@ for i=1:length(az)
             end
         end
         arraygain=10*log10(power(abs(he),2));
-        if el(j)==el_targt+pi/2&&az(i)==az_target
-            a=0
-            arraygain
-            gain
-        end
-        if el(j)==el_targt+pi/2&&az(i)+deg2rad(10)==az_target
-            a=1
-            arraygain
-            gain
-        end
-        if el(j)==el_targt+pi/2&&az(i)-deg2rad(10)==az_target
-            a=2
-            arraygain
-            gain
+        if y(j)+bia==90&&az(i)==az_target
+            bia
+            maxarraygain-arraygain
         end
         %res(i,j)=max(arraygain,-Am);
         res(i,j)=max(arraygain+gain,-Am);
     end
+end
 end
 % [x,y]=meshgrid(x,y);
 % mesh(x,y,res');
