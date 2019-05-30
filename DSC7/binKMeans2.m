@@ -22,7 +22,7 @@ while numCluster < k
         loop = true;
         count = 0;
         while loop
-            [spiltCentSet,spiltClusterAssume] = kMeans(curCluster,2);
+            [spiltCentSet,spiltClusterAssume] = kMeans(curCluster,2);%对簇j进行分裂成两个簇
             loop = false;
             for g = 1:size(spiltCentSet,1)
                 if isnan(spiltCentSet(g,1)) || isnan(spiltCentSet(g,2))
@@ -37,8 +37,8 @@ while numCluster < k
                 spiltClusterAssume = [0 inf 0];
             end
         end
-        spiltSSE = sum(spiltClusterAssume(:,2));
-        noSpiltSSE = sum(biClusterAssume(find(biClusterAssume(:,1)~=j),2));
+        spiltSSE = sum(spiltClusterAssume(:,2));%求簇j分裂成两个簇后，簇j的SSE
+        noSpiltSSE = sum(biClusterAssume(find(biClusterAssume(:,1)~=j),2));%除簇j外其他簇的SSE
         curSSE = spiltSSE + noSpiltSSE;
         
 %         fprintf('第%d个cluster被划分后的误差为：%f \n' , [j, curSSE]);

@@ -1,7 +1,7 @@
 clc;
 clear;
 ACIR=0:5:40;
-random=2;
+random=1;
 
 avetpbefore_acir=zeros(1,length(ACIR));
 edgetpbefore_acir=zeros(1,length(ACIR));

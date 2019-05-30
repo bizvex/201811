@@ -12,7 +12,7 @@ SE5before=zeros(1,length(loop));
 SE5after=zeros(1,length(loop));
 SE5MBSafter=zeros(1,length(loop));
 for i=1:length(loop)
-    filename = sprintf('./result/4GHz_20MHz_snap200_UAV6_UE%d_ACIR20_random%d.mat',loop(i),random);
+    filename = sprintf('./result/4GHz_20MHz_snap200_UAV6_UE%d_ACIR5_random%d.mat',loop(i),random);
     tmp=load(filename);
     
     %% outage

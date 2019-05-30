@@ -4,10 +4,10 @@ clear;
 num=200;
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-n_UAV = 6;
+n_UAV = 4:12;
 n_UE_per_MBS = 60;
-ACIR=20;
-config.random = 0;% 0:代表聚类 1:代表传统聚类 2:代表随机
+ACIR=5;
+config.random = 2;% 0:代表聚类 1:代表传统聚类 2:代表随机
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 config.num=num;
 config.n_hotspot_per_MBS = 2;
